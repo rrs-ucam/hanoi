@@ -16,7 +16,7 @@ moves = 0
 
 """
     
-    Este sencillo algoritmo recurrente resuelve el problema de las torres de Hanoi.
+    Esta línea provocará un conflicto con la rama 'master', pero sí con la rama 'conflicto'.
 
 """
 
