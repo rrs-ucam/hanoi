@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# This will abort "git commit" and remove the trailing whitespaces/tabs from the files to be committed.
+# Simply repeating the last "git commit" command will do the commit then.
+#
+# Put this into .git/hooks/pre-commit, and chmod +x it.
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+  against=HEAD
+else
+  # Initial commit: diff against an empty tree object
+  against=6c9e0b34a6aaba68abf1aa5b0b9945b78d2cea7b
+fi
+
+if test "$(git diff-index --check --cached $against --)"
+then
+  echo "COMMIT ABORTED! Removing trailing whitespaces..."
+  for FILE in `git diff-index --check --cached $against -- | sed '/^[+-]/d' | cut -d: -f1 | uniq`; do echo "* $FILE" ; sed -i "" 's/[ \t]*$//' "$FILE" ; done
+  echo "Done! Run git commit once again."
+  exit 1
+fi
