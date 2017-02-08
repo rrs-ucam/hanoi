@@ -7,7 +7,7 @@ import time
 
 __author__ = "Ricardo Rodríguez Schmidt"
 __license__ = "MIT"
-__version__ = "1.0"
+__version__ = "1.1"
 __email__ = "rrschmidt@ucam.edu"
 
 DISKS = 5
